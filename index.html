@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anahit Mkrtichyan — Content Strategist</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --ink: #1a1a1a; --mid: #555; --muted: #999; --border: #e8e8e4;
+      --bg: #faf9f7; --surface: #fff;
+      --sans: 'Helvetica Neue', Arial, sans-serif;
+      --serif: 'Georgia', serif;
+      --max: 1040px;
+    }
+    body { background: var(--bg); color: var(--ink); font-family: var(--serif); line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    p { color: #3a3a3a; font-size: 1rem; }
+    h1,h2,h3,h4,nav,.label,.tag,.btn { font-family: var(--sans); }
+    h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight:700; letter-spacing:-.02em; line-height:1.1; }
+    h2 { font-size: clamp(1.3rem,3vw,1.8rem); font-weight:700; letter-spacing:-.015em; line-height:1.2; }
+    h3 { font-size:1.05rem; font-weight:700; }
+    .label { font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:24px; display:block; }
+    .container { max-width:var(--max); margin:0 auto; padding:0 28px; }
+    section { padding:76px 0; }
+    hr.rule { border:none; border-top:1px solid var(--border); }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; background:rgba(250,249,247,.93); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-inner { max-width:var(--max); margin:0 auto; padding:0 28px; display:flex; justify-content:space-between; align-items:center; height:56px; }
+    .nav-logo { font-size:.9rem; font-weight:800; letter-spacing:.05em; }
+    .nav-links { display:flex; gap:22px; align-items:center; }
+    .nav-links a { font-size:.8rem; color:var(--mid); transition:color .2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-blog-link { font-weight:700 !important; color:var(--ink) !important; }
+    .btn-follow { font-family:var(--sans); font-size:.78rem; font-weight:700; padding:7px 18px; border:1.5px solid var(--ink); border-radius:20px; cursor:pointer; background:transparent; transition:all .2s; }
+    .btn-follow:hover,.btn-follow.on { background:var(--ink); color:#fff; }
+
+    /* HERO */
+    #hero { padding:92px 0 72px; }
+    .hero-grid { display:grid; grid-template-columns:1fr 360px; gap:60px; align-items:center; }
+    .hero-eyebrow { font-family:var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:block; }
+    .hero-role { font-family:var(--sans); font-size:1rem; color:var(--mid); margin:14px 0 28px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:6px; font-size:.8rem; font-weight:700; letter-spacing:.05em; padding:10px 22px; border-radius:3px; cursor:pointer; transition:all .2s; border:none; font-family:var(--sans); }
+    .btn-dark { background:var(--ink); color:#fff; }
+    .btn-dark:hover { background:#333; }
+    .btn-ghost { background:transparent; color:var(--ink); border:1.5px solid #ccc; }
+    .btn-ghost:hover { border-color:var(--ink); }
+    .hero-card { background:var(--surface); border:1px solid var(--border); padding:28px 32px; border-radius:3px; }
+    .hero-card h4 { font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .skill-wrap { display:flex; flex-wrap:wrap; gap:6px; }
+    .skill-pill { font-family:var(--sans); font-size:.7rem; font-weight:600; background:#f0efec; padding:4px 10px; border-radius:20px; color:var(--mid); }
+
+    /* ABOUT */
+    #about { background:#f3f2ef; }
+    .about-grid { display:grid; grid-template-columns:240px 1fr; gap:60px; }
+    .meta-block { margin-bottom:24px; }
+    .meta-label { font-family:var(--sans); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+    .meta-val { font-family:var(--sans); font-size:.88rem; color:var(--ink); line-height:1.65; }
+
+    /* DIVIDER */
+    .sec-head { display:flex; align-items:center; gap:16px; margin-bottom:36px; }
+    .sec-head h2 { white-space:nowrap; }
+    .sec-head::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* PORTFOLIO CARDS (work + projects unified) */
+    .card-stack { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:3px; overflow:hidden; }
+    .p-card { background:var(--surface); }
+    .p-card-top { padding:34px 38px; cursor:pointer; transition:background .15s; }
+    .p-card-top:hover { background:#fdfcfa; }
+    .p-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+    .p-num { font-family:var(--sans); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+    .tag-row { display:flex; gap:5px; flex-wrap:wrap; }
+    .tag { font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; background:#eeecea; color:var(--mid); padding:3px 8px; border-radius:2px; }
+    .p-title { font-size:1.25rem; font-weight:700; margin-bottom:5px; line-height:1.25; }
+    .p-sub { font-family:var(--sans); font-size:.8rem; color:var(--muted); margin-bottom:12px; }
+    .p-intro { font-size:.9rem; color:var(--mid); margin-bottom:18px; }
+    .expand-btn { font-family:var(--sans); font-size:.76rem; font-weight:700; background:none; border:1px solid #ddd; padding:6px 14px; border-radius:3px; cursor:pointer; color:var(--mid); transition:all .2s; }
+    .expand-btn:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+    .p-body { display:none; padding:0 38px 28px; border-top:1px solid var(--border); }
+    .p-body.open { display:block; padding-top:24px; }
+    .cs { margin-bottom:20px; }
+    .cs-label { font-family:var(--sans); font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); margin-bottom:7px; }
+    .cs p { font-size:.9rem; }
+    .cs ul { margin:6px 0 0 18px; }
+    .cs li { font-size:.88rem; color:#3a3a3a; margin-bottom:4px; }
+
+    /* REACTIONS BAR */
+    .r-bar { display:flex; align-items:center; gap:20px; padding:15px 38px; border-top:1px solid var(--border); background:#fdfcfa; }
+    .clap-btn { display:flex; align-items:center; gap:7px; background:none; border:none; cursor:pointer; font-family:var(--sans); font-size:.8rem; font-weight:700; color:var(--mid); transition:color .2s; user-select:none; padding:4px 0; }
+    .clap-icon { font-size:1.2rem; display:inline-block; transition:transform .15s cubic-bezier(.34,1.56,.64,1); }
+    .clap-btn:hover .clap-icon { transform:scale(1.3) rotate(-12deg); }
+    .clap-btn.fired .clap-icon { animation:cpop .3s cubic-bezier(.34,1.56,.64,1); }
+    .clap-btn.fired { color:#c0742a; }
+    @keyframes cpop { 0%{transform:scale(1)} 45%{transform:scale(1.55) rotate(-15deg)} 100%{transform:scale(1)} }
+    .cmt-btn { display:flex; align-items:center; gap:7px; background:none; border:none; cursor:pointer; font-family:var(--sans); font-size:.8rem; font-weight:700; color:var(--mid); transition:color .2s; }
+    .cmt-btn:hover { color:var(--ink); }
+    .r-time { font-family:var(--sans); font-size:.74rem; color:var(--muted); margin-left:auto; }
+
+    /* COMMENTS */
+    .cmt-section { display:none; padding:24px 38px; border-top:1px solid var(--border); background:#fdfcfa; }
+    .cmt-section.open { display:block; }
+    .cmt-section > h4 { font-family:var(--sans); font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+    .cmt-form { display:flex; flex-direction:column; gap:9px; margin-bottom:24px; }
+    .star-row { display:flex; gap:3px; }
+    .star { font-size:1.2rem; cursor:pointer; color:#ddd; transition:color .13s, transform .13s; line-height:1; }
+    .star:hover,.star.on { color:#f4a227; transform:scale(1.2); }
+    .cmt-form input,.cmt-form textarea { font-family:var(--serif); font-size:.9rem; border:1px solid var(--border); border-radius:3px; padding:9px 13px; background:var(--surface); color:var(--ink); outline:none; resize:none; transition:border-color .2s; }
+    .cmt-form input:focus,.cmt-form textarea:focus { border-color:var(--ink); }
+    .cmt-form textarea { min-height:75px; }
+    .cmt-submit { align-self:flex-start; font-family:var(--sans); font-size:.78rem; font-weight:700; padding:8px 20px; background:var(--ink); color:#fff; border:none; border-radius:3px; cursor:pointer; transition:background .2s; }
+    .cmt-submit:hover { background:#333; }
+    .cmt-list { display:flex; flex-direction:column; gap:12px; }
+    .cmt-item { background:var(--surface); border:1px solid var(--border); border-radius:3px; padding:14px 16px; }
+    .cmt-hd { display:flex; justify-content:space-between; margin-bottom:7px; }
+    .cmt-author { font-family:var(--sans); font-size:.8rem; font-weight:700; }
+    .cmt-stars { color:#f4a227; font-size:.8rem; }
+    .cmt-date { font-family:var(--sans); font-size:.7rem; color:var(--muted); }
+    .cmt-text { font-size:.88rem; color:#3a3a3a; }
+
+    /* INTERNSHIPS */
+    #internships { background:#f3f2ef; }
+    .int-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
+    .int-card { background:var(--surface); border:1px solid var(--border); padding:20px 22px; border-radius:3px; }
+    .int-card h3 { font-size:.9rem; margin-bottom:3px; }
+    .int-card p { font-size:.8rem; color:var(--mid); }
+
+    /* CONTACT */
+    #contact { background:var(--ink); color:#e8e8e4; padding:68px 0; }
+    #contact h2 { color:#fff; margin-bottom:10px; }
+    #contact .sub { color:#888; font-size:.88rem; margin-bottom:30px; font-family:var(--sans); }
+    .c-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:44px; }
+    .c-btn { font-family:var(--sans); font-size:.78rem; font-weight:700; color:#fff; border:1.5px solid #444; padding:9px 20px; border-radius:3px; transition:all .2s; display:inline-flex; align-items:center; gap:7px; }
+    .c-btn:hover { background:#fff; color:var(--ink); border-color:#fff; }
+    .footer-line { border-top:1px solid #2a2a2a; padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-family:var(--sans); font-size:.72rem; color:#555; }
+
+    /* PROGRESS + TOAST */
+    #prog { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#c0742a,#e8a87c); z-index:999; width:0; transition:width .1s linear; }
+    .toast { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(70px); background:var(--ink); color:#fff; font-family:var(--sans); font-size:.8rem; font-weight:600; padding:9px 20px; border-radius:20px; z-index:500; transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .28s; opacity:0; pointer-events:none; }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
+    /* FIREBASE STATUS */
+    .db-status { font-family:var(--sans); font-size:.7rem; color:var(--muted); padding:6px 38px; background:#fffbf4; border-top:1px solid #f0e8d8; display:none; }
+    .db-status.show { display:block; }
+
+    @media(max-width:800px) {
+      .hero-grid,.about-grid { grid-template-columns:1fr; gap:32px; }
+      .p-card-top,.p-body,.r-bar,.cmt-section { padding-left:22px; padding-right:22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AM</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#projects">Projects</a>
+      <a href="blog.html" class="nav-blog-link">Blog</a>
+      <a href="#contact">Contact</a>
+      <button class="btn-follow" onclick="toggleFollow(this)">Follow</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow">Content Strategy · Marketing · Branding</span>
+        <h1>Anahit<br>Mkrtichyan</h1>
+        <p class="hero-role">Content Strategist &amp; Multifunctional Marketing Specialist</p>
+        <p style="font-size:.95rem;color:var(--mid);max-width:500px;line-height:1.75;">MA Content Strategy · FH Joanneum, Austria. Focused on how visual content and strategic communication shape brand identity and audience perception.</p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-dark">View Work →</a>
+          <a href="blog.html" class="btn btn-ghost">Read Blog →</a>
+          <a href="https://www.linkedin.com/in/anahit-mkrtichyan-b696532b3" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <h4>Skills</h4>
+          <div class="skill-wrap">
+            <span class="skill-pill">Content Strategy</span>
+            <span class="skill-pill">Brand Development</span>
+            <span class="skill-pill">Digital Marketing</span>
+            <span class="skill-pill">Social Media</span>
+            <span class="skill-pill">Content Audit</span>
+            <span class="skill-pill">Message Architecture</span>
+            <span class="skill-pill">Visual Storytelling</span>
+            <span class="skill-pill">Meta Business Suite</span>
+            <span class="skill-pill">Adobe Suite</span>
+            <span class="skill-pill">Brand Positioning</span>
+          </div>
+          <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--border);">
+            <h4>Education</h4>
+            <p style="font-family:var(--sans);font-size:.82rem;color:var(--mid);margin-top:8px;line-height:1.7;">
+              <strong style="color:var(--ink);">MA Content Strategy</strong><br>FH Joanneum, Austria · 2025–2027<br><br>
+              <strong style="color:var(--ink);">BA Advertising &amp; PR</strong><br>Russian-Armenian University · 2021–2025
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="label">Quick Info</span>
+        <div class="meta-block"><div class="meta-label">Based In</div><div class="meta-val">Austria</div></div>
+        <div class="meta-block"><div class="meta-label">Focus</div><div class="meta-val">Content Strategy<br>Branding<br>Digital Communication</div></div>
+        <div class="meta-block"><div class="meta-label">Portfolio Type</div><div class="meta-val">Professional + Reflection</div></div>
+        <div class="meta-block">
+          <div class="meta-label">Contact</div>
+          <div class="meta-val">
+            <a href="mailto:mkrtichyan9@gmail.com" style="text-decoration:underline;text-underline-offset:3px;">mkrtichyan9@gmail.com</a><br>
+            <a href="tel:+436704068040" style="text-decoration:underline;text-underline-offset:3px;">+43 670 406 8040</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="label">About Me</span>
+        <h2 style="margin-bottom:20px;">Marketing &amp; PR specialist focused on brand perception.</h2>
+        <p style="margin-bottom:15px;">I am a marketing and PR specialist focused on branding and content strategy. My main interest lies in how visual content shapes the way people perceive brands — especially on social media platforms like Instagram.</p>
+        <p style="margin-bottom:15px;">Through academic research and practical work, I explore how different visual styles influence brand identity and audience perception. In my recent thesis project, I analysed the impact of visual content on brand perception and created several visual concepts to test how design choices change brand interpretation.</p>
+        <p>My goal is to develop strategies that combine creativity with clear communication — helping brands build a recognisable and meaningful presence online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PORTFOLIO (Work Experience as portfolio items) -->
+<section id="portfolio">
+  <div class="container">
+    <span class="label">Professional Work</span>
+    <div class="sec-head"><h2>Portfolio</h2></div>
+    <div class="card-stack">
+
+      <!-- Sintra -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Work 01</span>
+            <div class="tag-row"><span class="tag">SMM</span><span class="tag">Content Creation</span><span class="tag">Restaurant</span></div>
+          </div>
+          <h3 class="p-title">Sintra — Portuguese Cuisine Restaurant</h3>
+          <p class="p-sub">SMM Specialist &amp; Content Creator · 2024–2025</p>
+          <p class="p-intro">Managed social media presence and visual content strategy for the restaurant's digital platforms, including photo/video content, monthly content plans, and promotional event campaigns.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Details ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Key Responsibilities</div>
+            <ul>
+              <li>Created engaging photo and video content for Instagram and TikTok</li>
+              <li>Developed and implemented monthly content plans</li>
+              <li>Prepared monthly performance reports and analysed content effectiveness</li>
+              <li>Participated in planning and promoting marketing events</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Projects</div>
+            <ul>
+              <li>Developed interactive social media formats to increase audience engagement</li>
+              <li>Contributed to promotional campaigns for live music evenings and special events</li>
+            </ul>
+          </div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'sintra')"><span class="clap-icon">👏</span><span id="lc-sintra">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('sintra')"><span>💬</span><span id="cc-sintra">0 responses</span></button>
+          <span class="r-time">Work Portfolio</span>
+        </div>
+        <div class="db-status" id="dbs-sintra"></div>
+        <div class="cmt-section" id="cs-sintra">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-sintra"><span class="star" onclick="setStar(this,1,'sintra')">★</span><span class="star" onclick="setStar(this,2,'sintra')">★</span><span class="star" onclick="setStar(this,3,'sintra')">★</span><span class="star" onclick="setStar(this,4,'sintra')">★</span><span class="star" onclick="setStar(this,5,'sintra')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-sintra" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-sintra" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('sintra')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-sintra"></div>
+        </div>
+      </div>
+
+      <!-- Jamaica -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Work 02</span>
+            <div class="tag-row"><span class="tag">SMM</span><span class="tag">Content Strategy</span><span class="tag">Events</span></div>
+          </div>
+          <h3 class="p-title">Jamaica Cocktail Bar</h3>
+          <p class="p-sub">SMM Specialist &amp; Content Strategist · 2023–2024</p>
+          <p class="p-intro">Developed and implemented social media content strategy to strengthen the bar's brand presence, promote events, and grow audience engagement through Instagram.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Details ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Key Responsibilities</div>
+            <ul>
+              <li>Designed content strategy for Instagram, focusing on audience engagement and brand identity</li>
+              <li>Created photo and video content for social media platforms</li>
+              <li>Planned and promoted marketing events and themed party nights</li>
+              <li>Analysed content performance and optimised strategy based on engagement metrics</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Projects</div>
+            <ul>
+              <li>Promotional campaigns for themed cocktail nights and live DJ events</li>
+              <li>Event-focused content strategy to increase visibility and customer engagement</li>
+            </ul>
+          </div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'jamaica')"><span class="clap-icon">👏</span><span id="lc-jamaica">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('jamaica')"><span>💬</span><span id="cc-jamaica">0 responses</span></button>
+          <span class="r-time">Work Portfolio</span>
+        </div>
+        <div class="db-status" id="dbs-jamaica"></div>
+        <div class="cmt-section" id="cs-jamaica">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-jamaica"><span class="star" onclick="setStar(this,1,'jamaica')">★</span><span class="star" onclick="setStar(this,2,'jamaica')">★</span><span class="star" onclick="setStar(this,3,'jamaica')">★</span><span class="star" onclick="setStar(this,4,'jamaica')">★</span><span class="star" onclick="setStar(this,5,'jamaica')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-jamaica" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-jamaica" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('jamaica')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-jamaica"></div>
+        </div>
+      </div>
+
+      <!-- Viamina -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Work 03</span>
+            <div class="tag-row"><span class="tag">Branding</span><span class="tag">Content Creation</span><span class="tag">Skincare</span></div>
+          </div>
+          <h3 class="p-title">Viamina — Skincare Brand</h3>
+          <p class="p-sub">SMM Specialist / Content Creator &amp; Marketing Specialist · 2022–2025</p>
+          <p class="p-intro">Contributed to the development of the brand's digital presence, visual communication, rebranding initiatives, and marketing campaigns across digital and physical channels.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Details ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Key Responsibilities</div>
+            <ul>
+              <li>Created visual and video content for social media platforms</li>
+              <li>Contributed to brand development and visual brand communication</li>
+              <li>Participated in rebranding initiatives and brand positioning updates</li>
+              <li>Organised and coordinated participation in public events and exhibitions</li>
+              <li>Analysed social media performance and audience engagement</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Highlight</div><p>Organised and participated in the annual Big Christmas Market promotional campaign, supporting brand visibility and audience engagement.</p></div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'viamina')"><span class="clap-icon">👏</span><span id="lc-viamina">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('viamina')"><span>💬</span><span id="cc-viamina">0 responses</span></button>
+          <span class="r-time">Work Portfolio</span>
+        </div>
+        <div class="db-status" id="dbs-viamina"></div>
+        <div class="cmt-section" id="cs-viamina">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-viamina"><span class="star" onclick="setStar(this,1,'viamina')">★</span><span class="star" onclick="setStar(this,2,'viamina')">★</span><span class="star" onclick="setStar(this,3,'viamina')">★</span><span class="star" onclick="setStar(this,4,'viamina')">★</span><span class="star" onclick="setStar(this,5,'viamina')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-viamina" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-viamina" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('viamina')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-viamina"></div>
+        </div>
+      </div>
+
+      <!-- CorneliaE -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Work 04</span>
+            <div class="tag-row"><span class="tag">Brand Dev</span><span class="tag">Jewellery</span><span class="tag">Team</span></div>
+          </div>
+          <h3 class="p-title">CorneliaE — Jewellery Brand</h3>
+          <p class="p-sub">Brand Development Team Member · 2023–2024</p>
+          <p class="p-intro">Collaborated with a multidisciplinary team of 7 on a 6-month jewellery brand development project — from concept to market preparation, covering brand identity, positioning, and visual direction.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Details ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Responsibilities</div>
+            <ul>
+              <li>Participated in the full brand development process from concept to market preparation</li>
+              <li>Contributed to brand positioning and identity development</li>
+              <li>Created brand concept, storytelling, and visual direction</li>
+              <li>Contributed to marketing strategy and communication planning</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Outcome</div><p>Successfully developed the jewellery brand concept and identity; project entered the implementation phase including product sales launch and website development.</p></div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'corneliae-work')"><span class="clap-icon">👏</span><span id="lc-corneliae-work">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('corneliae-work')"><span>💬</span><span id="cc-corneliae-work">0 responses</span></button>
+          <span class="r-time">Work Portfolio</span>
+        </div>
+        <div class="db-status" id="dbs-corneliae-work"></div>
+        <div class="cmt-section" id="cs-corneliae-work">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-corneliae-work"><span class="star" onclick="setStar(this,1,'corneliae-work')">★</span><span class="star" onclick="setStar(this,2,'corneliae-work')">★</span><span class="star" onclick="setStar(this,3,'corneliae-work')">★</span><span class="star" onclick="setStar(this,4,'corneliae-work')">★</span><span class="star" onclick="setStar(this,5,'corneliae-work')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-corneliae-work" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-corneliae-work" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('corneliae-work')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-corneliae-work"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <span class="label">Personal &amp; Academic</span>
+    <div class="sec-head"><h2>Projects</h2></div>
+    <div class="card-stack">
+
+      <!-- Sprechen -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Project 01</span>
+            <div class="tag-row"><span class="tag">Brand Strategy</span><span class="tag">Content Direction</span><span class="tag">Startup</span></div>
+          </div>
+          <h3 class="p-title">Let's Sprechen</h3>
+          <p class="p-sub">Co-founder · Brand Strategy &amp; Content Direction</p>
+          <p class="p-intro">A creative marketing initiative focused on helping European startups grow through social media strategy, brand positioning and content-driven communication.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Read More ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">The Goal</div><p>Develop a clear positioning and build a scalable content and client acquisition system for a strategy-focused marketing initiative targeting European startups.</p></div>
+          <div class="cs"><div class="cs-label">My Role</div>
+            <ul>
+              <li>Co-founded the project and defined its strategic direction</li>
+              <li>Developed positioning and value proposition for a social media strategy studio</li>
+              <li>Designed service structure: social media strategy, audits, brand positioning</li>
+              <li>Created content strategy focused on attracting startup clients</li>
+              <li>Built communication framework for Instagram, TikTok, LinkedIn</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Content Approach</div><p>Content-driven marketing system using speculative case studies, educational content, and organic + direct outreach for lead generation.</p></div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'sprechen')"><span class="clap-icon">👏</span><span id="lc-sprechen">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('sprechen')"><span>💬</span><span id="cc-sprechen">0 responses</span></button>
+          <span class="r-time">4 min read</span>
+        </div>
+        <div class="db-status" id="dbs-sprechen"></div>
+        <div class="cmt-section" id="cs-sprechen">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-sprechen"><span class="star" onclick="setStar(this,1,'sprechen')">★</span><span class="star" onclick="setStar(this,2,'sprechen')">★</span><span class="star" onclick="setStar(this,3,'sprechen')">★</span><span class="star" onclick="setStar(this,4,'sprechen')">★</span><span class="star" onclick="setStar(this,5,'sprechen')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-sprechen" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-sprechen" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('sprechen')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-sprechen"></div>
+        </div>
+      </div>
+
+      <!-- Willow -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Project 02</span>
+            <div class="tag-row"><span class="tag">Brand Repositioning</span><span class="tag">D2C</span><span class="tag">Startup</span></div>
+          </div>
+          <h3 class="p-title">Willow Stories</h3>
+          <p class="p-sub">Content Strategist · Brand Repositioning</p>
+          <p class="p-intro">Vienna-based startup helping people preserve personal memories. Strategic shift from B2B2C (funeral homes) to direct-to-consumer — repositioning the brand from grief to connection, legacy, and shared experiences.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Read More ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Context &amp; Challenge</div><p>Repositioning the brand narrative from loss/grief to life-affirming communication focused on connection. Additional complexity: multiple target audiences, multilingual communication across European and Latin American markets.</p></div>
+          <div class="cs"><div class="cs-label">Contributions</div>
+            <ul>
+              <li>Developed strategic direction for brand communication during repositioning</li>
+              <li>Created foundation for consistent content narratives across use cases</li>
+              <li>Defined tone of voice for emotionally sensitive branding</li>
+              <li>Supported transition towards D2C content and communication approach</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Key Insight</div><p>Repositioning a brand means changing not just the words, but the emotional frame through which the product is perceived. Every content decision is also a decision about how users feel.</p></div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'willow')"><span class="clap-icon">👏</span><span id="lc-willow">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('willow')"><span>💬</span><span id="cc-willow">0 responses</span></button>
+          <span class="r-time">3 min read</span>
+        </div>
+        <div class="db-status" id="dbs-willow"></div>
+        <div class="cmt-section" id="cs-willow">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-willow"><span class="star" onclick="setStar(this,1,'willow')">★</span><span class="star" onclick="setStar(this,2,'willow')">★</span><span class="star" onclick="setStar(this,3,'willow')">★</span><span class="star" onclick="setStar(this,4,'willow')">★</span><span class="star" onclick="setStar(this,5,'willow')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-willow" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-willow" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('willow')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-willow"></div>
+        </div>
+      </div>
+
+      <!-- Corneliae -->
+      <div class="p-card">
+        <div class="p-card-top">
+          <div class="p-meta">
+            <span class="p-num">Project 03</span>
+            <div class="tag-row"><span class="tag">Brand Dev</span><span class="tag">Visual Identity</span><span class="tag">Luxury</span></div>
+          </div>
+          <h3 class="p-title">Corneliae — Jewellery Brand</h3>
+          <p class="p-sub">Brand Development · Visual Identity · Brand Strategy</p>
+          <p class="p-intro">A jewellery brand development project inspired by European cultural heritage and minimal luxury aesthetics — combining classical elegance with contemporary visual language and emotional storytelling.</p>
+          <button class="expand-btn" onclick="toggleCard(this)">Read More ↓</button>
+        </div>
+        <div class="p-body">
+          <div class="cs"><div class="cs-label">Strategic Approach</div>
+            <ul>
+              <li>European heritage as core inspiration for brand identity</li>
+              <li>Minimalism combined with luxury aesthetics</li>
+              <li>Brand archetypes (Ruler, Lover, Explorer) to shape personality</li>
+              <li>Tone of voice reflecting elegance and intellectual depth</li>
+              <li>Emotional value built through symbolism and storytelling</li>
+            </ul>
+          </div>
+          <div class="cs"><div class="cs-label">Deliverables</div><p>Brand positioning · Target audience definition · Archetypes &amp; personality · Tone of voice framework · Visual identity &amp; moodboards · Brand experience concept (store &amp; presentation)</p></div>
+        </div>
+        <div class="r-bar">
+          <button class="clap-btn" onclick="handleClap(this,'corneliae')"><span class="clap-icon">👏</span><span id="lc-corneliae">0</span></button>
+          <button class="cmt-btn" onclick="toggleCmt('corneliae')"><span>💬</span><span id="cc-corneliae">0 responses</span></button>
+          <span class="r-time">4 min read</span>
+        </div>
+        <div class="db-status" id="dbs-corneliae"></div>
+        <div class="cmt-section" id="cs-corneliae">
+          <h4>Responses</h4>
+          <div class="cmt-form">
+            <div class="star-row" id="sr-corneliae"><span class="star" onclick="setStar(this,1,'corneliae')">★</span><span class="star" onclick="setStar(this,2,'corneliae')">★</span><span class="star" onclick="setStar(this,3,'corneliae')">★</span><span class="star" onclick="setStar(this,4,'corneliae')">★</span><span class="star" onclick="setStar(this,5,'corneliae')">★</span></div>
+            <input type="text" placeholder="Your name" id="cn-corneliae" maxlength="60"/>
+            <textarea placeholder="Share your thoughts…" id="ct-corneliae" rows="3"></textarea>
+            <button class="cmt-submit" onclick="submitCmt('corneliae')">Publish Response</button>
+          </div>
+          <div class="cmt-list" id="cl-corneliae"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- INTERNSHIPS -->
+<section id="internships">
+  <div class="container">
+    <span class="label">Additional Experience</span>
+    <div class="sec-head"><h2>Internships &amp; Participations</h2></div>
+    <div class="int-grid">
+      <div class="int-card"><h3>Russian-Armenian University</h3><p>PR and Marketing Department</p></div>
+      <div class="int-card"><h3>Doping Agency</h3><p>Creative Department</p></div>
+      <div class="int-card"><h3>Digitain</h3><p>Loyalty Communication &amp; Customer Service</p></div>
+      <div class="int-card"><h3>"Popok" Advertising Festival</h3><p>Participant — International festival</p></div>
+      <div class="int-card"><h3>iSpace Academy &amp; Apple</h3><p>Masterclass: How the Brand Became a Technology Giant</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2>Let's connect</h2>
+    <p class="sub">Open to conversations about content strategy, branding, collaboration, and new opportunities.</p>
+    <div class="c-row">
+      <a class="c-btn" href="https://www.linkedin.com/in/anahit-mkrtichyan-b696532b3" target="_blank">↗ LinkedIn</a>
+      <a class="c-btn" href="https://www.instagram.com/forever.anahit" target="_blank">↗ Instagram</a>
+      <a class="c-btn" href="mailto:mkrtichyan9@gmail.com">✉ mkrtichyan9@gmail.com</a>
+      <a class="c-btn" href="tel:+436704068040">📞 +43 670 406 8040</a>
+    </div>
+    <div class="footer-line">
+      <span>Anahit Mkrtichyan — Content Strategy Portfolio</span>
+      <span>MA Content Strategy · FH Joanneum · 2025–2027</span>
+    </div>
+  </div>
+</section>
+
+<!-- FIREBASE SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+<script>
+  /* ─────────────────────────────────────────
+     FIREBASE CONFIG
+     Replace these values after creating your
+     Firebase project (see SETUP.md)
+  ───────────────────────────────────────── */
+  const FIREBASE_CONFIG = {
+    apiKey:            "AIzaSyDPpoS-mK3YU9G_qMJRDa89PM4TjlAg560",
+    authDomain:        "anahit-portfolio.firebaseapp.com",
+    projectId:         "anahit-portfolio",
+    storageBucket:     "anahit-portfolio.firebasestorage.app",
+    messagingSenderId: "662916653799",
+    appId:             "1:662916653799:web:f08cb791e72dcdf6497842"
+  };
+
+  let db = null;
+  const starState = {};
+  const likedItems = new Set();
+  const localClaps = {};
+  const localComments = {};
+
+  /* ── Init Firebase ── */
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+    loadAllReactions();
+  } catch(e) {
+    console.warn('Firebase not configured — running in local mode');
+  }
+
+  /* ── Load all reactions from Firestore ── */
+  async function loadAllReactions() {
+    if (!db) return;
+    const ids = ['sintra','jamaica','viamina','corneliae-work','sprechen','willow','corneliae'];
+    for (const id of ids) {
+      // Load likes
+      db.collection('reactions').doc(id).onSnapshot(doc => {
+        if (doc.exists) {
+          const likes = doc.data().likes || 0;
+          const el = document.getElementById('lc-' + id);
+          if (el) el.textContent = likes;
+        }
+      });
+      // Load comments
+      db.collection('comments').where('itemId','==',id).orderBy('timestamp','desc')
+        .onSnapshot(snap => {
+          const list = document.getElementById('cl-' + id);
+          if (!list) return;
+          list.innerHTML = '';
+          snap.forEach(doc => renderComment(list, doc.data()));
+          const cc = document.getElementById('cc-' + id);
+          if (cc) cc.textContent = snap.size + ' response' + (snap.size !== 1 ? 's' : '');
+        });
+    }
+  }
+
+  /* ── Clap ── */
+  async function handleClap(btn, id) {
+    if (likedItems.has(id)) { showToast('You already clapped for this!'); return; }
+    likedItems.add(id);
+    btn.classList.add('fired');
+    setTimeout(() => btn.classList.remove('fired'), 400);
+    if (db) {
+      try {
+        await db.collection('reactions').doc(id).set(
+          { likes: firebase.firestore.FieldValue.increment(1) }, { merge: true }
+        );
+      } catch(e) { console.warn(e); fallbackClap(id); }
+    } else { fallbackClap(id); }
+    showToast('👏 Clap added — thank you!');
+  }
+  function fallbackClap(id) {
+    localClaps[id] = (localClaps[id] || 0) + 1;
+    const el = document.getElementById('lc-' + id);
+    if (el) el.textContent = localClaps[id];
+  }
+
+  /* ── Toggle comments ── */
+  function toggleCmt(id) { document.getElementById('cs-' + id).classList.toggle('open'); }
+
+  /* ── Stars ── */
+  function setStar(el, rating, id) {
+    starState[id] = rating;
+    document.querySelectorAll('#sr-' + id + ' .star').forEach((s,i) => s.classList.toggle('on', i < rating));
+  }
+
+  /* ── Submit comment ── */
+  async function submitCmt(id) {
+    const name = document.getElementById('cn-' + id).value.trim();
+    const text = document.getElementById('ct-' + id).value.trim();
+    const rating = starState[id] || 0;
+    if (!name || !text) { showToast('Please enter your name and a message.'); return; }
+    const data = { itemId: id, name, text, rating, timestamp: new Date().toISOString() };
+    if (db) {
+      try {
+        data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        await db.collection('comments').add(data);
+      } catch(e) { console.warn(e); renderCommentLocal(id, data); }
+    } else { renderCommentLocal(id, data); }
+    document.getElementById('cn-' + id).value = '';
+    document.getElementById('ct-' + id).value = '';
+    starState[id] = 0;
+    document.querySelectorAll('#sr-' + id + ' .star').forEach(s => s.classList.remove('on'));
+    showToast('Response published — thank you!');
+  }
+
+  function renderCommentLocal(id, data) {
+    const list = document.getElementById('cl-' + id);
+    if (list) renderComment(list, data, true);
+    const cc = document.getElementById('cc-' + id);
+    if (cc) { const n = parseInt(cc.textContent) + 1; cc.textContent = n + ' response' + (n !== 1 ? 's' : ''); }
+  }
+
+  function renderComment(list, data, prepend = false) {
+    const date = data.timestamp?.toDate ? data.timestamp.toDate().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    const stars = data.rating > 0 ? '<span class="cmt-stars">' + '★'.repeat(data.rating) + '☆'.repeat(5-data.rating) + '</span>' : '';
+    const el = document.createElement('div');
+    el.className = 'cmt-item';
+    el.innerHTML = `<div class="cmt-hd"><div><span class="cmt-author">${esc(data.name)}</span> ${stars}</div><span class="cmt-date">${date}</span></div><p class="cmt-text">${esc(data.text)}</p>`;
+    prepend ? list.prepend(el) : list.appendChild(el);
+  }
+
+  /* ── Expand/collapse ── */
+  function toggleCard(btn) {
+    const body = btn.closest('.p-card-top').nextElementSibling;
+    const open = body.classList.toggle('open');
+    btn.textContent = open ? 'Collapse ↑' : (btn.dataset.label || 'Details ↓');
+  }
+
+  /* ── Follow ── */
+  function toggleFollow(btn) {
+    const on = btn.classList.toggle('on');
+    btn.textContent = on ? 'Following ✓' : 'Follow';
+    showToast(on ? 'Following Anahit Mkrtichyan' : 'Unfollowed');
+  }
+
+  /* ── Reading progress ── */
+  window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    document.getElementById('prog').style.width = (el.scrollTop / (el.scrollHeight - el.clientHeight) * 100) + '%';
+  });
+
+  /* ── Toast ── */
+  let tt;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>
